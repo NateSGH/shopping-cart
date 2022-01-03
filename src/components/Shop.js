@@ -89,11 +89,13 @@ function Shop() {
   ];
 
   return (
-    <div>
+    <div className="shop-wrapper">
       <h1>Shop</h1>
-      {itemsArr.map((item) => (
-        <ShopCard key={item.id} img={item.img} name={item.itemName} cost={item.cost} />
-      ))}
+      <div className="shop-items">
+        {itemsArr.map((item) => (
+          <ShopCard key={item.id} img={item.img} name={item.itemName} cost={item.cost} />
+        ))}
+      </div>
     </div>
   );
 }

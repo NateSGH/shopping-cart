@@ -18,3 +18,22 @@ nav {
   text-decoration: none;
   color: black;
 }
+
+.card {
+  border-radius: 10px;
+  margin: 5px 10px;
+  background-color: rgba(129, 129, 129, 0.5);
+  padding: 5px;
+}
+
+.card img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.shop-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
