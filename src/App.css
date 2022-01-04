@@ -37,3 +37,7 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.shop-menu-position {
+  cursor: pointer;
+}
