@@ -19,16 +19,23 @@ nav {
   color: black;
 }
 
-.card {
+.shop-card,
+.cart-card {
   border-radius: 10px;
   margin: 5px 10px;
   background-color: rgba(129, 129, 129, 0.5);
   padding: 5px;
 }
 
-.card img {
+.shop-card img,
+.cart-card img {
   border-radius: 10px;
   max-width: 100%;
+  height: auto;
+}
+
+.cart-card img {
+  width: 100px;
   height: auto;
 }
 
@@ -38,6 +45,6 @@ nav {
   justify-content: center;
 }
 
-.shop-menu-position {
+.shop-menu-subsection {
   cursor: pointer;
 }
