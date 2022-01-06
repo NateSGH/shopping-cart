@@ -11,9 +11,10 @@ const CartCard = (props) => {
   return (
     <div className="cart-card">
       <img src={props.img} alt={props.name} />
-      <p>{props.name}</p>
-      <p>{props.price}</p>
+      <p className="name">{props.name}</p>
+      <p className="price">{props.price}</p>
       <input
+        className="quantity"
         type="number"
         min="1"
         max="100"

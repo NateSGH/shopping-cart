@@ -19,8 +19,7 @@ nav {
   color: black;
 }
 
-.shop-card,
-.cart-card {
+.shop-card {
   border-radius: 10px;
   margin: 5px 10px;
   background-color: rgba(129, 129, 129, 0.5);
@@ -32,11 +31,44 @@ nav {
   border-radius: 10px;
   max-width: 100%;
   height: auto;
+  margin: 10px;
+}
+
+.cart-card {
+  border-radius: 10px;
+  margin: 5px 10px;
+  background-color: rgba(189, 189, 189, 0.5);
+  padding: 5px;
+}
+
+.cart-card {
+  width: 30vw;
+  display: grid;
+  grid-template-areas:
+    'img name price'
+    'img quantity quantity';
 }
 
 .cart-card img {
   width: 100px;
   height: auto;
+  grid-area: img;
+}
+
+.cart-card .name {
+  grid-area: name;
+}
+
+.cart-card .price {
+  grid-area: price;
+}
+
+.cart-card .quantity {
+  grid-area: quantity;
+  width: fit-content;
+  height: 30px;
+  padding: 1px;
+  font-size: large;
 }
 
 .shop-items {
