@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Shop from './components/Shop';
 import Cart from './components/Cart';
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState([]);
@@ -13,7 +13,6 @@ function App() {
     let currentItemArr = itemsInCart.slice();
 
     function checkItemName(arrItem) {
-      console.log(arrItem.id);
       return arrItem.name === item.name;
     }
 
@@ -32,7 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav />
+        <Nav cartQuantity={itemsInCart.length} />
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop onClickOnCardButton={addItemToCart} />} />

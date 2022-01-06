@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Nav() {
+function Nav(props) {
   return (
     <nav>
       <Link className="link" to="/home">
@@ -14,7 +14,7 @@ function Nav() {
           <li>Shop</li>
         </Link>
         <Link className="link" to="/cart">
-          <li>Cart</li>
+          <li>Cart ({props.cartQuantity})</li>
         </Link>
       </ul>
     </nav>

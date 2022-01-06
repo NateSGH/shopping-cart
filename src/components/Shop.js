@@ -106,40 +106,45 @@ function Shop(props) {
   const [itemsWrapperKey, setItemsWrapperKey] = useState(0);
   const [itemsKind, setItemsKind] = useState('all');
 
+  function changeItemKind(kind) {
+    if (itemsKind !== kind) {
+      setItemsKind(kind);
+      updateShopPItemsOnPage();
+    }
+  }
+
   useEffect(() => {
-    document.getElementById('shop-menu-all').addEventListener('click', () => {
-      if (itemsKind !== 'all') {
-        setItemsKind('all');
-        updateShopPItemsOnPage();
-      }
-    });
+    function changeItemKindToAll() {
+      changeItemKind('all');
+    }
+
+    document.getElementById('shop-menu-all').addEventListener('click', changeItemKindToAll);
   });
 
   useEffect(() => {
-    document.getElementById('shop-menu-fruites').addEventListener('click', () => {
-      if (itemsKind !== 'fruit') {
-        setItemsKind('fruit');
-        updateShopPItemsOnPage();
-      }
-    });
+    function changeItemKindToFruit() {
+      changeItemKind('fruit');
+    }
+
+    document.getElementById('shop-menu-fruits').addEventListener('click', changeItemKindToFruit);
   });
 
   useEffect(() => {
-    document.getElementById('shop-menu-vegies').addEventListener('click', () => {
-      if (itemsKind !== 'vegetable') {
-        setItemsKind('vegetable');
-        updateShopPItemsOnPage();
-      }
-    });
+    function changeItemKindToVegetable() {
+      changeItemKind('vegetable');
+    }
+
+    document
+      .getElementById('shop-menu-vegies')
+      .addEventListener('click', changeItemKindToVegetable);
   });
 
   useEffect(() => {
-    document.getElementById('shop-menu-nuts').addEventListener('click', () => {
-      if (itemsKind !== 'nut') {
-        setItemsKind('nut');
-        updateShopPItemsOnPage();
-      }
-    });
+    function changeItemKindToNut() {
+      changeItemKind('nut');
+    }
+
+    document.getElementById('shop-menu-nuts').addEventListener('click', changeItemKindToNut);
   });
 
   function updateShopPItemsOnPage() {
@@ -147,33 +152,34 @@ function Shop(props) {
     setItemsWrapperKey(currentKey + 1);
   }
 
+  function renderShopCard(item) {
+    return (
+      <ShopCard
+        key={item.id}
+        id={item.id}
+        img={item.img}
+        name={item.name}
+        price={item.price}
+        onClick={props.onClickOnCardButton}
+      />
+    );
+  }
+
   function renderShopItems(kind) {
     if (kind === 'all') {
-      return itemsArr.map((item) => (
-        <ShopCard
-          key={item.id}
-          id={item.id}
-          img={item.img}
-          name={item.name}
-          price={item.price}
-          onClick={props.onClickOnCardButton}
-        />
-      ));
+      return itemsArr.map((item) => {
+        return renderShopCard(item);
+      });
     }
 
-    return itemsArr.map((item) => {
-      if (item.kind === kind) {
-        return (
-          <ShopCard
-            key={item.id}
-            id={item.id}
-            img={item.img}
-            name={item.name}
-            price={item.price}
-            onClick={props.onClickOnCardButton}
-          />
-        );
-      }
+    function checkKind(item) {
+      return item.kind === kind;
+    }
+
+    const filteredArr = itemsArr.filter(checkKind);
+
+    return filteredArr.map((item) => {
+      return renderShopCard(item);
     });
   }
 
@@ -184,8 +190,8 @@ function Shop(props) {
         <p className="shop-menu-subsection" id="shop-menu-all">
           All
         </p>
-        <p className="shop-menu-subsection" id="shop-menu-fruites">
-          Fruites
+        <p className="shop-menu-subsection" id="shop-menu-fruits">
+          Fruits
         </p>
         <p className="shop-menu-subsection" id="shop-menu-vegies">
           Vegetables
