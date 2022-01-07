@@ -28,6 +28,10 @@ function App() {
     setItemsInCart(currentItemArr);
   }
 
+  function clearCart() {
+    setItemsInCart([]);
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -35,7 +39,10 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop onClickOnCardButton={addItemToCart} />} />
-          <Route path="/cart" element={<Cart items={itemsInCart} />} />
+          <Route
+            path="/cart"
+            element={<Cart items={itemsInCart} clearCartQuantity={clearCart} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

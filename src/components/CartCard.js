@@ -21,6 +21,7 @@ const CartCard = (props) => {
         value={quantity}
         onChange={handleCardQuantityChange}
       ></input>
+      <button>Remove Item</button>
     </div>
   );
 };

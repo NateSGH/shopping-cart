@@ -1,7 +1,21 @@
+import { useState } from 'react';
 import CartCard from './CartCard';
 
 function Cart(props) {
-  const itemsArr = props.items;
+  let itemsArr = props.items;
+
+  const [cartWrapperKey, setCartWrapperKey] = useState(0);
+
+  function updateCartWrapperKey() {
+    const currentKey = cartWrapperKey;
+    setCartWrapperKey(currentKey + 1);
+  }
+
+  function clearCart() {
+    updateCartWrapperKey();
+    itemsArr.length = 0;
+    props.clearCartQuantity();
+  }
 
   function handleQuantityChange(id, quantity) {
     function checkId(item) {
@@ -9,16 +23,24 @@ function Cart(props) {
     }
 
     const index = itemsArr.findIndex(checkId);
-
     if (index !== -1) {
       itemsArr[index].quantity = quantity;
     }
   }
 
-  return (
-    <div>
-      <h1>Cart</h1>
+  function renderCartButtons() {
+    return (
       <div>
+        <button>Checkout</button>
+        <button onClick={clearCart}>Clear Cart</button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="cart-div">
+      <h1>Cart</h1>
+      <div key={cartWrapperKey} className="cart-cards-wrapper">
         {itemsArr.map((item) => (
           <CartCard
             key={item.id}
@@ -30,6 +52,7 @@ function Cart(props) {
             handleQuantityChange={handleQuantityChange}
           />
         ))}
+        {itemsArr.length ? renderCartButtons() : <p>Your cart is empty</p>}
       </div>
     </div>
   );
