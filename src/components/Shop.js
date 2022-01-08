@@ -185,20 +185,22 @@ function Shop(props) {
 
   return (
     <div className="shop-wrapper">
-      <h1>Shop</h1>
-      <div className="shop-menu">
-        <p className="shop-menu-subsection" id="shop-menu-all">
-          All
-        </p>
-        <p className="shop-menu-subsection" id="shop-menu-fruits">
-          Fruits
-        </p>
-        <p className="shop-menu-subsection" id="shop-menu-vegies">
-          Vegetables
-        </p>
-        <p className="shop-menu-subsection" id="shop-menu-nuts">
-          Nuts
-        </p>
+      <div>
+        <h2>Shop</h2>
+        <div className="shop-menu">
+          <p className="shop-menu-subsection" id="shop-menu-all">
+            All
+          </p>
+          <p className="shop-menu-subsection" id="shop-menu-fruits">
+            Fruits
+          </p>
+          <p className="shop-menu-subsection" id="shop-menu-vegies">
+            Vegetables
+          </p>
+          <p className="shop-menu-subsection" id="shop-menu-nuts">
+            Nuts
+          </p>
+        </div>
       </div>
       <div key={itemsWrapperKey} className="shop-items">
         {renderShopItems(itemsKind)}

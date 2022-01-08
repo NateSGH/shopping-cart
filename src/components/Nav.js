@@ -4,7 +4,7 @@ function Nav(props) {
   return (
     <nav>
       <Link className="link" to="/home">
-        <h3>Fresh Market</h3>
+        <h1>Fresh Market</h1>
       </Link>
       <ul className="nav-links">
         <Link className="link" to="/home">
