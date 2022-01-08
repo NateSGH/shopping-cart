@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState([]);
+  const [quantytiOfItemsInCart, setQuantytiOfItemsInCart] = useState(0);
 
   function addItemToCart(item) {
     let currentItemArr = itemsInCart.slice();
@@ -24,6 +25,7 @@ function App() {
       currentItemArr[index].quantity += 1;
     } else {
       currentItemArr.push(item);
+      setQuantytiOfItemsInCart(currentItemArr.length);
     }
     setItemsInCart(currentItemArr);
   }
@@ -32,16 +34,27 @@ function App() {
     setItemsInCart([]);
   }
 
+  function updateItemsInCart(newArr) {
+    setItemsInCart(newArr);
+    setQuantytiOfItemsInCart(itemsInCart.length);
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav cartQuantity={itemsInCart.length} />
+        <Nav cartQuantity={quantytiOfItemsInCart} />
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop onClickOnCardButton={addItemToCart} />} />
           <Route
             path="/cart"
-            element={<Cart items={itemsInCart} clearCartQuantity={clearCart} />}
+            element={
+              <Cart
+                items={itemsInCart}
+                clearCartQuantity={clearCart}
+                updateCartItemsForApp={updateItemsInCart}
+              />
+            }
           />
         </Routes>
       </div>

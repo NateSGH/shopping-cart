@@ -15,23 +15,41 @@ function Cart(props) {
     updateCartWrapperKey();
     itemsArr.length = 0;
     props.clearCartQuantity();
+    props.updateCartItemsForApp(itemsArr);
+  }
+
+  function findCardIndexById(arr, id) {
+    function checkCardId(item) {
+      return item.id === id;
+    }
+    return arr.findIndex(checkCardId);
   }
 
   function handleQuantityChange(id, quantity) {
-    function checkId(item) {
-      return item.id === id;
-    }
-
-    const index = itemsArr.findIndex(checkId);
+    const index = findCardIndexById(itemsArr, id);
     if (index !== -1) {
       itemsArr[index].quantity = quantity;
     }
+
+    props.updateCartItemsForApp(itemsArr);
+  }
+
+  function removeItemCard(id) {
+    const index = findCardIndexById(itemsArr, id);
+    if (index !== -1) {
+      itemsArr.splice(index, 1);
+      props.updateCartItemsForApp(itemsArr);
+    }
+  }
+
+  function addCheckoutAler() {
+    alert('Thanks!');
   }
 
   function renderCartButtons() {
     return (
       <div>
-        <button>Checkout</button>
+        <button onClick={addCheckoutAler}>Checkout</button>
         <button onClick={clearCart}>Clear Cart</button>
       </div>
     );
@@ -50,6 +68,7 @@ function Cart(props) {
             price={item.price}
             quantity={item.quantity}
             handleQuantityChange={handleQuantityChange}
+            removeItem={removeItemCard}
           />
         ))}
         {itemsArr.length ? renderCartButtons() : <p>Your cart is empty</p>}

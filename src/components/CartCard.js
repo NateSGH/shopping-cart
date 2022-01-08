@@ -8,6 +8,10 @@ const CartCard = (props) => {
     props.handleQuantityChange(props.id, event.target.value);
   }
 
+  function removeItem() {
+    props.removeItem(props.id);
+  }
+
   return (
     <div className="cart-card">
       <img src={props.img} alt={props.name} />
@@ -17,11 +21,11 @@ const CartCard = (props) => {
         className="quantity"
         type="number"
         min="1"
-        max="100"
+        max="10"
         value={quantity}
         onChange={handleCardQuantityChange}
       ></input>
-      <button>Remove Item</button>
+      <button onClick={removeItem}>Remove Item</button>
     </div>
   );
 };
