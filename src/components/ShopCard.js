@@ -11,9 +11,9 @@ const ShopCard = (props) => {
   }
   return (
     <div className="shop-card">
-      <img src={props.img} alt={props.name} />
+      <img className="img" src={props.img} alt={props.name} />
       <p>{props.name}</p>
-      <p>{props.price}</p>
+      <p>${props.price}/kg</p>
       <button onClick={returnItemOnClick}>Add to Cart</button>
     </div>
   );

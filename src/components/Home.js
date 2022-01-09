@@ -1,5 +1,3 @@
-import homeImg from '../images/homeImg.jpg';
-
 function Home() {
   return (
     <div className="home-wrapper">

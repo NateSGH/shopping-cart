@@ -5,6 +5,9 @@ function Cart(props) {
   let itemsArr = props.items;
 
   const [cartWrapperKey, setCartWrapperKey] = useState(0);
+  const [totalSum, setTotalSum] = useState(0);
+
+  let newTotalSum = 0;
 
   function updateCartWrapperKey() {
     const currentKey = cartWrapperKey;
@@ -28,7 +31,13 @@ function Cart(props) {
   function handleQuantityChange(id, quantity) {
     const index = findCardIndexById(itemsArr, id);
     if (index !== -1) {
+      newTotalSum =
+        newTotalSum -
+        itemsArr[index].quantity * itemsArr[index].price +
+        quantity * itemsArr[index].price;
+
       itemsArr[index].quantity = quantity;
+      setTotalSum(newTotalSum);
     }
 
     props.updateCartItemsForApp(itemsArr);
@@ -55,23 +64,62 @@ function Cart(props) {
     );
   }
 
+  function updateTotalSum(newSum) {
+    setTotalSum(newSum);
+    console.log(`total sum update ${totalSum}`);
+  }
+
+  function renderTotalSum() {
+    console.log(`Newtotal sum render ${newTotalSum}`);
+    updateTotalSum(0);
+
+    return (
+      <div>
+        <p>${newTotalSum}</p>
+      </div>
+    );
+  }
+
+  function renderCartButtonsAndTotalSum() {
+    return (
+      <div>
+        {renderTotalSum()}
+        {renderCartButtons()}
+      </div>
+    );
+  }
+
+  function calculateCartTotalSum(item) {
+    let currentSum = newTotalSum;
+    newTotalSum = currentSum + item.price * item.quantity;
+  }
+
+  function renderCartCards(item) {
+    return (
+      <CartCard
+        key={item.id}
+        id={item.id}
+        img={item.img}
+        name={item.name}
+        price={item.price}
+        quantity={item.quantity}
+        handleQuantityChange={handleQuantityChange}
+        removeItem={removeItemCard}
+      />
+    );
+  }
+
+  function renderCartCardsAndCalculateTotalSum(item) {
+    calculateCartTotalSum(item);
+    return renderCartCards(item);
+  }
+
   return (
     <div className="cart-div">
       <h1>Cart</h1>
       <div key={cartWrapperKey} className="cart-cards-wrapper">
-        {itemsArr.map((item) => (
-          <CartCard
-            key={item.id}
-            id={item.id}
-            img={item.img}
-            name={item.name}
-            price={item.price}
-            quantity={item.quantity}
-            handleQuantityChange={handleQuantityChange}
-            removeItem={removeItemCard}
-          />
-        ))}
-        {itemsArr.length ? renderCartButtons() : <p>Your cart is empty</p>}
+        {itemsArr.map(renderCartCardsAndCalculateTotalSum)}
+        {itemsArr.length ? renderCartButtonsAndTotalSum() : <p>Your cart is empty</p>}
       </div>
     </div>
   );

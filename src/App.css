@@ -115,7 +115,8 @@ nav {
   display: grid;
   grid-template-areas:
     'img name price'
-    'img quantity quantity';
+    'img quantity quantity'
+    'img removeBtn removeBtn';
 }
 
 .cart-card img {
@@ -126,18 +127,34 @@ nav {
 
 .cart-card .name {
   grid-area: name;
+  justify-self: start;
 }
 
 .cart-card .price {
   grid-area: price;
+  justify-self: end;
 }
 
-.cart-card .quantity {
+.cart-card .quantity-wrapper {
   grid-area: quantity;
   width: fit-content;
   height: 30px;
   padding: 1px;
   font-size: large;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cart-card-icon {
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+}
+
+.cart-card .btn-remove-item {
+  grid-area: removeBtn;
+  justify-self: center;
 }
 
 .shop-items {
