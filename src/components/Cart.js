@@ -5,13 +5,18 @@ function Cart(props) {
   let itemsArr = props.items;
 
   const [cartWrapperKey, setCartWrapperKey] = useState(0);
-  const [totalSum, setTotalSum] = useState(0);
+  const [totalSumKey, setTotalSumKey] = useState(0);
 
   let newTotalSum = 0;
 
   function updateCartWrapperKey() {
     const currentKey = cartWrapperKey;
     setCartWrapperKey(currentKey + 1);
+  }
+
+  function updateTotalSumKey() {
+    const currentKey = totalSumKey;
+    setTotalSumKey(currentKey + 1);
   }
 
   function clearCart() {
@@ -37,7 +42,7 @@ function Cart(props) {
         quantity * itemsArr[index].price;
 
       itemsArr[index].quantity = quantity;
-      setTotalSum(newTotalSum);
+      updateTotalSumKey();
     }
 
     props.updateCartItemsForApp(itemsArr);
@@ -64,18 +69,10 @@ function Cart(props) {
     );
   }
 
-  function updateTotalSum(newSum) {
-    setTotalSum(newSum);
-    console.log(`total sum update ${totalSum}`);
-  }
-
   function renderTotalSum() {
-    console.log(`Newtotal sum render ${newTotalSum}`);
-    updateTotalSum(0);
-
     return (
-      <div>
-        <p>${newTotalSum}</p>
+      <div key={totalSumKey}>
+        <p>${newTotalSum.toFixed(2)}</p>
       </div>
     );
   }
@@ -94,7 +91,7 @@ function Cart(props) {
     newTotalSum = currentSum + item.price * item.quantity;
   }
 
-  function renderCartCards(item) {
+  function renderCartCard(item) {
     return (
       <CartCard
         key={item.id}
@@ -111,7 +108,7 @@ function Cart(props) {
 
   function renderCartCardsAndCalculateTotalSum(item) {
     calculateCartTotalSum(item);
-    return renderCartCards(item);
+    return renderCartCard(item);
   }
 
   return (
