@@ -72,7 +72,7 @@ function Cart(props) {
   function renderTotalSum() {
     return (
       <div key={totalSumKey}>
-        <p>${newTotalSum.toFixed(2)}</p>
+        <p className="cart-total-sum">Total: ${newTotalSum.toFixed(2)}</p>
       </div>
     );
   }
@@ -113,8 +113,8 @@ function Cart(props) {
 
   return (
     <div className="cart-div">
-      <h1>Cart</h1>
       <div key={cartWrapperKey} className="cart-cards-wrapper">
+        <h2>Your Cart</h2>
         {itemsArr.map(renderCartCardsAndCalculateTotalSum)}
         {itemsArr.length ? renderCartButtonsAndTotalSum() : <p>Your cart is empty</p>}
       </div>

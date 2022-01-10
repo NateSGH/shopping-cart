@@ -51,19 +51,20 @@ function Shop(props) {
       price: 3.99,
       kind: 'vegetable',
     },
+
     {
       id: 6,
-      img: Carrots,
-      name: 'Carrots',
-      price: 3.39,
-      kind: 'vegetable',
-    },
-    {
-      id: 7,
       img: Grapes,
       name: 'Grapes',
       price: 7.99,
       kind: 'fruit',
+    },
+    {
+      id: 7,
+      img: Carrots,
+      name: 'Carrots',
+      price: 3.39,
+      kind: 'vegetable',
     },
     {
       id: 8,
@@ -185,7 +186,7 @@ function Shop(props) {
 
   return (
     <div className="shop-wrapper">
-      <div>
+      <div className="shop-h2-and-menu-wrapper">
         <h2>Shop</h2>
         <div className="shop-menu">
           <p className="shop-menu-subsection" id="shop-menu-all">
