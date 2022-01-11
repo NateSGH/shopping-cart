@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 :root {
   --nav-background-color: #34735c;
@@ -12,7 +12,7 @@
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 button {
@@ -70,6 +70,13 @@ nav h1 {
   text-shadow: 1px 1px 5px black;
 }
 
+.nav-links .link:hover {
+  transform: scale(1.1);
+}
+
+.nav-links .link:active {
+  transform: scale(0.95);
+}
 .home-wrapper {
   background: url('./images/homeImg.jpg') no-repeat center center/cover;
   height: 100vh;
@@ -168,9 +175,9 @@ nav h1 {
   width: 40vw;
   display: grid;
   grid-template-areas:
-    'cartCardImg cartCardName cartCardPrice'
-    'cartCardImg cartCardQuantity cartCardQuantity'
-    'cartCardImg cartCardRemoveBtn cartCardRemoveBtn';
+    'cartCardImg cartCardName cartCardPriceKg cartCardTotalPrice '
+    'cartCardImg cartCardQuantity cartCardQuantity cartCardQuantity'
+    'cartCardImg cartCardRemoveBtn cartCardRemoveBtn cartCardRemoveBtn';
   margin: 5px 10px;
   padding: 5px;
   border-bottom: 1px solid black;
@@ -187,9 +194,22 @@ nav h1 {
   justify-self: start;
 }
 
-.cart-card .price {
-  grid-area: cartCardPrice;
+.cart-card .price-kg {
+  font-size: 14px;
+  grid-area: cartCardPriceKg;
+  justify-self: center;
+}
+
+.cart-card .total-price {
+  font-size: 16px;
+  grid-area: cartCardTotalPrice;
   justify-self: end;
+}
+
+.cart-card .name,
+.cart-card .price-kg,
+.cart-card .total-price {
+  margin: 10px 0;
 }
 
 .cart-card .quantity-wrapper {
@@ -232,11 +252,11 @@ nav h1 {
 
 @media (min-width: 1000px) {
   .cart-cards-wrapper {
-    width: 35vw;
+    width: 40vw;
   }
 
   .cart-card {
-    width: 30vw;
+    width: 35vw;
   }
 }
 
@@ -295,7 +315,8 @@ nav h1 {
     width: 65vw;
     grid-template-areas:
       'cartCardImg cartCardName cartCardName'
-      'cartCardImg cartCardPrice cartCardPrice'
+      'cartCardImg cartCardPriceKg cartCardPriceKg'
+      'cartCardImg cartCardTotalPrice cartCardTotalPrice'
       'cartCardImg cartCardQuantity cartCardQuantity'
       'cartCardImg cartCardRemoveBtn cartCardRemoveBtn';
   }
@@ -303,10 +324,17 @@ nav h1 {
   .cart-card-icon {
     font-size: 22px;
   }
-  .cart-card .name,
-  .cart-card .price {
+  .cart-card .price-kg,
+  .cart-card .total-price {
+    font-size: 13px;
+    justify-self: end;
+    margin: 6px 0;
+  }
+
+  .cart-card .name {
     font-size: 15px;
     justify-self: end;
+    margin: 6px 0;
   }
 }
 

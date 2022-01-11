@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 const ShopCard = (props) => {
+  const [btnText, setBtnText] = useState('Add to Cart');
+
   function returnItemOnClick() {
     const item = {
       id: props.id,
@@ -8,6 +12,7 @@ const ShopCard = (props) => {
       quantity: 1,
     };
     props.onClick(item);
+    setBtnText('In cart!');
   }
   return (
     <div className="shop-card">
@@ -15,7 +20,7 @@ const ShopCard = (props) => {
       <p className="shop-card-name">{props.name}</p>
       <p className="shop-card-price">${props.price}/kg</p>
       <button className="shop-card-btn" onClick={returnItemOnClick}>
-        Add to Cart
+        {btnText}
       </button>
     </div>
   );

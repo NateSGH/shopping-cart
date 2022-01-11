@@ -35,7 +35,8 @@ const CartCard = (props) => {
     <div className="cart-card">
       <img src={props.img} alt={props.name} />
       <p className="name">{props.name}</p>
-      <p className="price">${props.price}/kg</p>
+      <p className="price-kg">${props.price}/kg</p>
+      <p className="total-price">${props.price * quantity}</p>
       <div className="quantity-wrapper">
         <AiOutlineMinusCircle className="cart-card-icon" onClick={decreaseQuantity} />
         <input
