@@ -44,7 +44,7 @@ function App() {
       <div className="App">
         <Nav cartQuantity={quantytiOfItemsInCart} />
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop onClickOnCardButton={addItemToCart} />} />
           <Route
             path="/cart"
