@@ -12,4 +12,4 @@ This project is a part of [The Odin Project](https://www.theodinproject.com/)'s 
 
 ## Live Demo:
 
-[Link]()
+[Link](https://natesgh.github.io/shopping-cart/)
