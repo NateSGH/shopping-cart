@@ -1,6 +1,6 @@
 # Shopping Cart
 
-A React app
+A shopping cart React app with home page, shop page with individual cards for each of produce products (fruits, vegetables and nuts) and cart page.
 
 This project is a part of [The Odin Project](https://www.theodinproject.com/)'s curriculum.
 
